@@ -22,15 +22,7 @@ window.fbAsyncInit = function() {
           ProviderId: 'graph.facebook.com',
           WebIdentityToken: response.authResponse.accessToken
         });
-        AWS.config.region = 'eu-west-1';
-
-
-        s3 = new AWS.S3;
-
-        var db = new AWS.DynamoDB();
-        db.listTables(function(err, data) {
-          console.log(data.TableNames);
-        });
+        console.log("You are logged");
       } else {
         console.log('There was a problem logging you in.');
       }
