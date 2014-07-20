@@ -22,6 +22,8 @@ window.fbAsyncInit = function() {
           ProviderId: 'graph.facebook.com',
           WebIdentityToken: response.authResponse.accessToken
         });
+        AWS.config.region = 'eu-west-1';
+
 
         s3 = new AWS.S3;
 
