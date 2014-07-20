@@ -25,7 +25,10 @@ window.fbAsyncInit = function() {
 
         s3 = new AWS.S3;
 
-        console.log('You are now logged in.');
+        var db = new AWS.DynamoDB();
+        db.listTables(function(err, data) {
+          console.log(data.TableNames);
+        });
       } else {
         console.log('There was a problem logging you in.');
       }
