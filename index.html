@@ -1,6 +1,6 @@
 <html>
 <head>
-<script src="https://sdk.amazonaws.com/js/aws-sdk-2.0.8.min.js"></script>
+<script src="aws-sdk.js"></script>
 </head>
 <body>
 <button id="login">Login</button>
@@ -22,7 +22,17 @@ window.fbAsyncInit = function() {
           ProviderId: 'graph.facebook.com',
           WebIdentityToken: response.authResponse.accessToken
         });
-        console.log("You are logged");
+        var cognitoidentity = new AWS.CognitoIdentity({region:'us-east-1', credentials: AWS.config.credentials});
+      
+        var params = {
+  IdentityPoolId: 'us-east-1:7f011370-a113-4a72-b25d-dc8694d373f4', // required
+  AccountId: '870278805636'
+};
+cognitoidentity.getId(params, function(err, data) {
+  if (err) console.log(err, err.stack); // an error occurred
+  else     console.log(data);           // successful response
+});
+        console.log("You are logged in");
       } else {
         console.log('There was a problem logging you in.');
       }
